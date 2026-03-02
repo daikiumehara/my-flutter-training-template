@@ -5,7 +5,7 @@ on:
     types: [ opened, ready_for_review ]
 
 env:
-  REVIEWERS: ''
+  REVIEWERS: 'macneko-ayu, K9i-0'
 
 jobs:
   assign:
