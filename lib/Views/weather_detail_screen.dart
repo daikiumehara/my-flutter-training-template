@@ -1,11 +1,30 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_training/Clients/yumemi_weather_client.dart';
+import 'package:flutter_training/Datas/weather_data.dart';
+import 'package:flutter/widgets.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:flutter_training/Views/Extensions/weather_type_extension.dart';
 
-void main() {
-  runApp(const MainApp());
+class Weatherdetailscreen extends StatefulWidget {
+  final YumemiWeatherClient weatherClient;
+
+  Weatherdetailscreen({
+    required this.weatherClient,
+  });
+
+  @override
+  State<StatefulWidget> createState() {
+    return WeatherdetailState(weatherClient: weatherClient);
+  }
 }
 
-class MainApp extends StatelessWidget {
-  const MainApp({super.key});
+class WeatherdetailState extends State<Weatherdetailscreen> {
+  final YumemiWeatherClient weatherClient;
+  WeatherData? weatherData;
+
+  WeatherdetailState({
+    required this.weatherClient,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -15,7 +34,7 @@ class MainApp extends StatelessWidget {
           child: Column(
             children: [
               Expanded(child: Container()),
-              const Expanded(
+              Expanded(
                 child: FractionallySizedBox(
                   widthFactor: 0.5,
                   child: Column(
@@ -23,9 +42,15 @@ class MainApp extends StatelessWidget {
                     children: [
                       AspectRatio(
                         aspectRatio: 1,
-                        child: Placeholder(),
+                        child: () {
+                          final imageName = weatherData?.weatherType.getImageName();
+                          if(imageName == null) {
+                              return const Placeholder();
+                          }
+                          return SvgPicture.asset(imageName);
+                        }()
                       ),
-                      Row(
+                      const Row(
                         mainAxisAlignment: .spaceAround,
                         children: [
                           TemperatureLabel(
@@ -57,7 +82,12 @@ class MainApp extends StatelessWidget {
                               child: const Text('Close')
                             ),
                             TextButton(
-                              onPressed: () {}, 
+                              onPressed: () async {
+                                final value = await weatherClient.fetchWeatherData();
+                                setState(() {
+                                  weatherData = value;
+                                });
+                              }, 
                               child: const Text('Reload')
                             ),
                           ],
