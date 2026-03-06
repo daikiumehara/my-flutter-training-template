@@ -5,10 +5,10 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_training/Views/Extensions/weather_type_extension.dart';
 
-class Weatherdetailscreen extends StatefulWidget {
+class WeatherdetailScreen extends StatefulWidget {
   final YumemiWeatherClient weatherClient;
 
-  Weatherdetailscreen({
+  WeatherdetailScreen({
     required this.weatherClient,
   });
 
@@ -18,7 +18,7 @@ class Weatherdetailscreen extends StatefulWidget {
   }
 }
 
-class WeatherdetailState extends State<Weatherdetailscreen> {
+class WeatherdetailState extends State<WeatherdetailScreen> {
   final YumemiWeatherClient weatherClient;
   WeatherData? weatherData;
 
