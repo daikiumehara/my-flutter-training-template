@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_training/Clients/yumemi_weather_client.dart';
-import 'package:flutter_training/Views/weather_detail_screen.dart';
+import 'package:flutter_training/Views/splash_screen.dart';
 
 void main() {
   runApp(const MainApp());
@@ -11,6 +10,8 @@ class MainApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return WeatherdetailScreen(weatherClient: YumemiWeatherClientImpl());
+    return MaterialApp(
+      home: SplashScreen(),
+    );
   }
 }
