@@ -78,7 +78,9 @@ class WeatherdetailState extends State<WeatherdetailScreen> {
                           mainAxisAlignment: .spaceAround,
                           children: [
                             TextButton(
-                              onPressed: () {}, 
+                              onPressed: () {
+                                Navigator.of(context).pop();
+                              }, 
                               child: const Text('Close')
                             ),
                             TextButton(
