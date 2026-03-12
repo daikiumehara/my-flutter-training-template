@@ -4,6 +4,7 @@ import 'package:flutter_training/Datas/weather_data.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_training/Views/Extensions/weather_type_extension.dart';
+import 'package:yumemi_weather/yumemi_weather.dart';
 
 class WeatherdetailScreen extends StatefulWidget {
   final YumemiWeatherClient weatherClient;
