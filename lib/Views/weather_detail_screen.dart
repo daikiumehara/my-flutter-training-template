@@ -52,15 +52,15 @@ class WeatherdetailState extends State<WeatherdetailScreen> {
                           return SvgPicture.asset(imageName);
                         }(),
                       ),
-                      const Row(
+                      Row(
                         mainAxisAlignment: .spaceAround,
                         children: [
                           TemperatureLabel(
-                            temperature: '20',
+                            temperature: weatherData?.maxTemp.toString() ?? '**',
                             textColor: Colors.blue,
                           ),
                           TemperatureLabel(
-                            temperature: '15',
+                            temperature: weatherData?.minTemp.toString() ?? '**',
                             textColor: Colors.red,
                           ),
                         ],
@@ -147,7 +147,7 @@ class TemperatureLabel extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 16),
       child: Text(
-        '** ℃',
+        '${temperature} ℃',
           style: Theme.of(
             context,
           ).textTheme.labelLarge?.copyWith(color: textColor),
