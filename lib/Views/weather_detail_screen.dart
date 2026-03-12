@@ -43,12 +43,13 @@ class WeatherdetailState extends State<WeatherdetailScreen> {
                       AspectRatio(
                         aspectRatio: 1,
                         child: () {
-                          final imageName = weatherData?.weatherType.getImageName();
-                          if(imageName == null) {
-                              return const Placeholder();
+                          final imageName = weatherData?.weatherType
+                              .getImageName();
+                          if (imageName == null) {
+                            return const Placeholder();
                           }
                           return SvgPicture.asset(imageName);
-                        }()
+                        }(),
                       ),
                       const Row(
                         mainAxisAlignment: .spaceAround,
@@ -80,17 +81,40 @@ class WeatherdetailState extends State<WeatherdetailScreen> {
                             TextButton(
                               onPressed: () {
                                 Navigator.of(context).pop();
-                              }, 
-                              child: const Text('Close')
+                              },
+                              child: const Text('Close'),
                             ),
                             TextButton(
                               onPressed: () async {
-                                final value = await weatherClient.fetchWeatherData();
-                                setState(() {
-                                  weatherData = value;
-                                });
-                              }, 
-                              child: const Text('Reload')
+                                try {
+                                  final value = await weatherClient
+                                      .fetchWeatherData();
+                                  setState(() {
+                                    weatherData = value;
+                                  });
+                                } on YumemiWeatherError {
+                                  showDialog(
+                                    context: context,
+                                    builder: (content) {
+                                      return AlertDialog(
+                                        title: const Text('エラーなってるやん'),
+                                        content: const Text(
+                                          'エラー内容はぁ〜これだぁぁ\n１・２・３👉',
+                                        ),
+                                        actions: [
+                                          TextButton(
+                                            child: const Text('OK'),
+                                            onPressed: () {
+                                              Navigator.of(context).pop();
+                                            },
+                                          ),
+                                        ],
+                                      );
+                                    },
+                                  );
+                                }
+                              },
+                              child: const Text('Reload'),
                             ),
                           ],
                         ),
