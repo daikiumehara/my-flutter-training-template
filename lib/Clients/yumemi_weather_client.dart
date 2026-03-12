@@ -13,7 +13,7 @@ class YumemiWeatherClientImpl implements YumemiWeatherClient {
   @override
   Future<WeatherData> fetchWeatherData() async {
     final yumemiWeather = YumemiWeather();
-    final weatherCondition = yumemiWeather.fetchSimpleWeather();
+    final weatherCondition = yumemiWeather.fetchThrowsWeather('tokyo');
     final weatherType = WeatherType.fromString(weatherCondition);
     if(weatherType == null) {
       return .new(.sunny);
