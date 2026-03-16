@@ -16,7 +16,7 @@ class YumemiWeatherClientImpl with YumemiWeatherClient {
     final params = convert.json.encode(requestData.toJson());
     final json = yumemiWeather.fetchWeather(params);
     final map = convert.json.decode(json) as Map<String, dynamic>;
-    final weatherData = new WeatherData.fromJson(map);
+    final weatherData = WeatherData.fromJson(map);
     return weatherData;
   }
 }
