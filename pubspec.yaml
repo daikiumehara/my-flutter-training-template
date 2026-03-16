@@ -16,11 +16,14 @@ dependencies:
       url: https://github.com/yumemi-inc/flutter-training-template.git
       ref: main
       path: packages/yumemi_weather
+  json_annotation: ^4.11.0
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
   yumemi_lints: ^4.3.0
+  build_runner: ^2.12.2
+  json_serializable: ^6.13.0
 
 flutter:
   uses-material-design: true
